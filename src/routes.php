@@ -1,3 +1,3 @@
 <?php
 
-Route::get('states', 'Webelightdev\Dbbackup\Controllers\DbbackupController@getBackupStates');
+Route::get('states', 'Webelightdev\LaravelDbBackup\Controllers\DbbackupController@getBackupStates');
