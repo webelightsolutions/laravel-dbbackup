@@ -1,6 +1,13 @@
 {
     "name": "webelightdev/dbbackup",
     "description": "Database backup package.",
+    "keywords": [
+    	"webelightdev",
+    	"dbbackup",
+    	"database",
+    	"laravel-dbbackup"
+    ],
+    "license": "MIT",
     "authors": [
         {
             "name": "Yash Barot",
