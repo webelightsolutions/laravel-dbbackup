@@ -1,6 +1,5 @@
 {
     "name": "webelightdev/laravel-dbbackup",
-    "replace": {"webelightdev/dbbackup": "self.version"},
     "description": "Laravel Database backup package.",
     "keywords": [
     	"webelightdev",
