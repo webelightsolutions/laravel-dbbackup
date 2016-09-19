@@ -5,7 +5,7 @@ namespace Webelightdev\LaravelDbBackup;
 use Illuminate\Support\ServiceProvider;
 use Webelightdev\LaravelDbBackup\Commands\DbBackupCommand;
 
-class DbBackupServiceProvider extends ServiceProvider
+class DbbackupServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
