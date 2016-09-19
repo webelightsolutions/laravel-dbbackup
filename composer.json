@@ -1,6 +1,6 @@
 {
-    "name": "webelightdev/dbbackup",
-    "description": "Database backup package.",
+    "name": "webelightdev/laravel-dbbackup",
+    "description": "Laravel Database backup package.",
     "keywords": [
     	"webelightdev",
     	"dbbackup",
