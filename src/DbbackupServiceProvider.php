@@ -1,11 +1,11 @@
 <?php
 
-namespace Webelightdev\Dbbackup;
+namespace Webelightdev\LaravelDbBackup;
 
 use Illuminate\Support\ServiceProvider;
-use Symfony\Component\Finder\Finder;
+use Webelightdev\LaravelDbBackup\Commands\DbBackupCommand;
 
-class DbbackupServiceProvider extends ServiceProvider
+class DbBackupServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -15,7 +15,6 @@ class DbbackupServiceProvider extends ServiceProvider
     public function boot()
     {
         include __DIR__.'/routes.php';
-        //$this->loadAutoloader(base_path('packages'));
     }
 
     /**
@@ -25,7 +24,14 @@ class DbbackupServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('Webelightdev\Dbbackup\Controllers\DbbackupController');
+        $this->app->make('Webelightdev\LaravelDbBackup\Controllers\DbBackupController');
         $this->loadViewsFrom(__DIR__.'/views', 'dbbackup');
+        $this->publishes([__DIR__.'/../config/dbbackup.php' => config_path('dbbackup.php')]);
+
+        $this->app->bind('command.dbbackup:run', DbBackupCommand::class);
+
+        $this->commands([
+            'command.dbbackup:run',
+        ]);
     }
 }
