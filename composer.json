@@ -1,0 +1,13 @@
+{
+    "name": "webelightdev/dbbackup",
+    "description": "Database backup package.",
+    "authors": [
+        {
+            "name": "Yash Barot",
+            "email": "yashce04@gmail.com"
+        }
+    ],
+    "require": {
+    	"php": ">=5.5.9"
+    }
+}
