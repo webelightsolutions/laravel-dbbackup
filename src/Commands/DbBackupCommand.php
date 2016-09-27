@@ -3,9 +3,14 @@
 namespace Webelightdev\LaravelDbBackup\Commands;
 
 use Illuminate\Console\Command;
+use Webelightdev\LaravelDbBackup\BackupStorage\Backup;
+use Webelightdev\LaravelDbBackup\BackupStorage\GoogleDrive\Storage;
 
 class DbBackupCommand extends Command
 {
+    protected $backup;
+    protected $storage;
+
     /**
      * The name and signature of the console command.
      *
@@ -25,9 +30,11 @@ class DbBackupCommand extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Backup $backup, Storage $storage)
     {
         parent::__construct();
+        $this->backup = $backup;
+        $this->storage = $storage;
     }
 
     /**
@@ -37,32 +44,13 @@ class DbBackupCommand extends Command
      */
     public function handle()
     {
-        $username = config('dbbackup.database.username');
-        $password = config('dbbackup.database.password');
-        $host = config('dbbackup.database.host');
-        $database = config('dbbackup.database.name');
-
-        $current_date = date('Y-m-d_H-i-s');
-
-        $backup_name = $database.'_'.$current_date.'.sql.gz';
-
-        // if mysqldump is on the system path you do not need to specify the full path
-        $command = "mysqldump --databases --host=$host --user=$username ";
-
-        if ($password) {
-            $command .= '--password='.$password.' ';
-        }
-
-        $command .= $database;
-        $command .= ' | gzip > '.$backup_name;
-
-        // Execute command using system()
-        system($command);
-
+        $backup_file = $this->backup->createBackup();
+        $this->storage->uploadFile($backup_file);
+        
         // \Mail::send('emails.db_backup_email', compact('current_date'), function ($message) use ($current_date, $dumpfname) {
         //     $message->from(env('MAIL_ADDRESS'), env('MAIL_NAME'));
         //     $message->to(env('MAIL_TO'))->subject('ERP System DB Backup-'.$current_date)->attach($dumpfname);
         // });
-        // unlink($dumpfname);
+        unlink($backup_file);
     }
 }
