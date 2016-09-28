@@ -29,17 +29,17 @@ class Storage
     public function uploadFile($backup_file)
     {
         $this->refreshToken();
-        
+
         $file = new Google_Service_Drive_DriveFile();
         $file->setName($backup_file);
         $file->setParents([$this->folder_id]);
 
         $data = file_get_contents($backup_file);
 
-        return $this->drive->files->create($file, array(
-            'data' => $data,
-            'mimeType' => 'application/octet-stream',
-            'uploadType' => 'multipart'
-        ));
+        return $this->drive->files->create($file, [
+            'data'       => $data,
+            'mimeType'   => 'application/octet-stream',
+            'uploadType' => 'multipart',
+        ]);
     }
 }

@@ -39,6 +39,7 @@ class Client
     public function drive($client)
     {
         $drive = new Google_Service_Drive($client);
+
         return $drive;
     }
 }
