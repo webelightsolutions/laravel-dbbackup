@@ -16,7 +16,7 @@ class DbBackupCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'dbbackup:run';
+    protected $signature = 'run:dbbackup';
 
     /**
      * The console command description.
@@ -46,11 +46,6 @@ class DbBackupCommand extends Command
     {
         $backup_file = $this->backup->createBackup();
         $this->storage->uploadFile($backup_file);
-
-        // \Mail::send('emails.db_backup_email', compact('current_date'), function ($message) use ($current_date, $dumpfname) {
-        //     $message->from(env('MAIL_ADDRESS'), env('MAIL_NAME'));
-        //     $message->to(env('MAIL_TO'))->subject('ERP System DB Backup-'.$current_date)->attach($dumpfname);
-        // });
         unlink($backup_file);
     }
 }

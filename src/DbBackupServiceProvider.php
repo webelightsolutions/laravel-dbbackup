@@ -14,7 +14,7 @@ class DbBackupServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        include __DIR__.'/routes.php';
+        //
     }
 
     /**
@@ -24,14 +24,10 @@ class DbBackupServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('Webelightdev\LaravelDbBackup\Controllers\DbBackupController');
-        $this->loadViewsFrom(__DIR__.'/views', 'dbbackup');
         $this->publishes([__DIR__.'/../config/dbbackup.php' => config_path('dbbackup.php')]);
-
-        $this->app->bind('command.dbbackup:run', DbBackupCommand::class);
-
+        $this->app->bind('command.run:dbbackup', DbBackupCommand::class);
         $this->commands([
-            'command.dbbackup:run',
+            'command.run:dbbackup',
         ]);
     }
 }
