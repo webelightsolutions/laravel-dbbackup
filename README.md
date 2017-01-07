@@ -38,5 +38,5 @@ php artisan dbbackup:run
  
  To publish config file,
  ```
- php artisan vendor:publish
+ php artisan vendor:publish --provider="Webelightdev\LaravelDbBackup\DbBackupServiceProvider"
  ```
