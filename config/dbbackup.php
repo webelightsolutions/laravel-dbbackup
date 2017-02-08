@@ -48,24 +48,14 @@ return [
     | Backup Storage Configurations
     |--------------------------------------------------------------------------
     |
-    | Currently supported : local, Amazon S3 and Google Drive
+    | Currently supported : filesystem
     |--------------------------------------------------------------------------
     */
     'storage' => [
-        // Use filesystem or googledrive
+        // Use filesystem
         // filesystem configurations will be copied from laravel filesystem configuration
-        'default' => 'googledrive',
+        'default' => 'filesystem',
 
-        'disk' => [
-            'googledrive' => [
-                'client_id'        => env('GDRIVE_CLIENT_ID', ''),
-                'client_secret'    => env('GDRIVE_CLIENT_SECRET', ''),
-                'redirect_uri'     => env('GDRIVE_REDIRECT_URI', ''),
-                'scopes'           => env('GDRIVE_SCOPES', ''),
-                'access_type'      => env('GDRIVE_ACCESS_TYPE', ''),
-                'refresh_token'    => env('GDRIVE_REFRESH_TOKEN'),
-                'backup_folder_id' => env('GDRIVE_FOLDER_ID'),
-            ],
-        ],
+        'disk' => [],
     ],
 ];
