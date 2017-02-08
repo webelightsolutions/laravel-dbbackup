@@ -4,7 +4,6 @@ namespace Webelightdev\LaravelDbBackup\Commands;
 
 use Illuminate\Console\Command;
 use Webelightdev\LaravelDbBackup\BackupStorage\Backup;
-use Webelightdev\LaravelDbBackup\BackupStorage\GoogleDrive\Storage;
 
 class DbBackupCommand extends Command
 {
